@@ -1,0 +1,1 @@
+alert("哈囉 外部main.js");
