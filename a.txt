@@ -1,0 +1,10 @@
+1. 行內事件：
+<button onclick="alert('哈囉')">點我</button>
+
+2. 內嵌 script 標籤：
+<script>
+alert("哈囉");
+</script>
+
+3. 外部 .js 檔案：
+<script src="main.js"></script>
