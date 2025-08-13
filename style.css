@@ -1,207 +1,64 @@
-/* Renaissance / 文藝復興風格 CSS
-   - 可放在 ./style.css
-   - 建議連同 serif 字體（如 Cormorant Garamond 或 Cardo）一起使用以達最好效果
-*/
-
-/* ==== 可調參數 ==== */
-:root{
-  --bg-paper: linear-gradient(180deg,#f7efe6 0%, #efe6d5 40%, #e7dcc7 100%);
-  --accent-gold: #b8860b;
-  --accent-deep: #5b3a29;
-  --muted: #6b594f;
-  --ink: #2b1f1a;
-  --radius: 12px;
-  --shadow-soft: 0 6px 20px rgba(43,31,26,0.12);
-  --ornament-size: 42px;
-  --line-break: 1px solid rgba(43,31,26,0.12);
-  font-size: 16px;
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif;
+  line-height: 1.6;
+  padding: 16px;
 }
 
-/* ==== 全局基礎 ==== */
-*{box-sizing:border-box}
-html,body{
-  height:100%;
-  margin:0;
-  padding:2.2rem;
-  background: var(--bg-paper);
-  color:var(--ink);
-  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.55;
+label { margin-right: 8px; }
+.group label { margin-right: 12px; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 8px;
 }
 
-/* 細緻的邊框與陰影給人古董感 */
-.container{
-  max-width:900px;
-  margin:0 auto;
+th, td {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
 }
 
-/* 標題：花飾 + 標題字 */
-h2{
-  position:relative;
-  margin:1.2rem 0 0.8rem;
-  padding:0.6rem 1rem;
-  background: linear-gradient(90deg, rgba(184,134,11,0.06), rgba(91,58,41,0.03));
-  border-radius: calc(var(--radius) - 4px);
-  border: 1px solid rgba(43,31,26,0.08);
-  box-shadow: var(--shadow-soft);
-  font-size:1.35rem;
-  letter-spacing:0.6px;
-  color:var(--accent-deep);
+tbody tr:nth-child(even) {
+  background: #fafafa;
 }
 
-/* 小花飾（用 ::before 當小裝飾） */
-h2::before{
-  content:"✶";
-  position:absolute;
-  left:0.6rem;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:1.6rem;
-  color:var(--accent-gold);
-  opacity:0.95;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+/* 新增列的過關動畫 */
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.new-row {
+  animation: fadeInScale 0.5s ease forwards;
+  background-color: #fffae6;
 }
 
-/* 表單樣式：類似羊皮紙內嵌卡片 */
-form#signupForm{
-  background: rgba(255,255,255,0.6);
-  border-radius: var(--radius);
-  padding:1rem 1.1rem;
-  border: 1px solid rgba(43,31,26,0.08);
-  box-shadow: 0 8px 24px rgba(43,31,26,0.07) inset;
-  backdrop-filter: blur(2px);
-}
-
-/* label / inputs 基礎樣式 */
-input[type="text"]{
-  padding:0.5rem 0.6rem;
-  border: 1px solid rgba(91,58,41,0.12);
-  border-radius:6px;
-  font-family: inherit;
-  font-size:1rem;
-  color:var(--ink);
-  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(240,234,225,0.6));
-  box-shadow: 0 2px 6px rgba(43,31,26,0.04);
-  margin:0.2rem 0 0.6rem;
-  display:inline-block;
-}
-
-/* 核取方塊：用古典風格的偽元素美化 */
-input[type="checkbox"]{
-  width:16px;
-  height:16px;
-  appearance:none;
-  -webkit-appearance:none;
-  border:1px solid rgba(91,58,41,0.18);
-  background:linear-gradient(180deg,#fff,#f4eee3);
-  border-radius:3px;
-  margin:0 0.45rem 0 0.2rem;
-  vertical-align:middle;
-  position:relative;
-  cursor:pointer;
-}
-input[type="checkbox"]:checked{
-  background: linear-gradient(180deg,var(--accent-gold), #d6a30a);
-  box-shadow: 0 1px 0 rgba(0,0,0,0.06) inset;
-  border-color: rgba(0,0,0,0.12);
-}
-input[type="checkbox"]:checked::after{
-  content:"✕";
-  position:absolute;
-  left:3px;
-  top:-2px;
-  font-size:14px;
-  color:rgba(40,20,0,0.9);
-  transform:rotate(15deg);
-}
-
-/* 送出按鈕：像雕花木頭的按鈕 */
-input[type="submit"]{
-  display:inline-block;
-  padding:0.55rem 1rem;
-  margin-top:0.6rem;
-  background: linear-gradient(180deg, #d9b96a, #b8871e);
+/* 成功提示（小小過關特效） */
+.toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: #111;
   color: #fff;
-  border:none;
-  border-radius:8px;
-  box-shadow: 0 6px 18px rgba(43,31,26,0.18);
-  font-weight:600;
-  letter-spacing:0.6px;
-  cursor:pointer;
-  transition: transform .12s ease, box-shadow .12s ease;
-  text-transform:uppercase;
-  font-size:0.95rem;
-  font-family: "Cormorant Garamond", serif;
+  padding: 8px 12px;
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 14px;
 }
-input[type="submit"]:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(43,31,26,0.2);
+.toast.show {
+  animation: slideInOut 2.2s ease forwards;
 }
-
-/* 報名清單表格：古典書冊式 */
-#resultTable{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:1rem;
-  background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(250,245,238,0.6));
-  border-radius:8px;
-  overflow:hidden;
-  box-shadow: 0 10px 30px rgba(43,31,26,0.06);
-}
-#resultTable th, #resultTable td{
-  padding:0.8rem 0.9rem;
-  border-bottom: var(--line-break);
-  text-align:left;
-  font-family: "Cormorant Garamond", serif;
-  color:var(--muted);
-}
-#resultTable thead th{
-  background: linear-gradient(180deg, rgba(184,134,11,0.06), rgba(91,58,41,0.03));
-  color:var(--accent-deep);
-  letter-spacing:0.8px;
-  font-weight:700;
-  border-bottom: 1px solid rgba(43,31,26,0.08);
-}
-#resultTable tr:nth-child(even) td{
-  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(240,235,225,0.02));
+@keyframes slideInOut {
+  0%   { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+  15%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  85%  { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
 }
 
-/* 小裝飾：在表格上方加入一條古典分隔線 */
-#resultTable::before{
-  content:"";
-  display:block;
-  height:14px;
-  width:100%;
-  background:
-    radial-gradient(circle at 20% 50%, rgba(184,134,11,0.12) 0 2px, transparent 2px),
-    linear-gradient(90deg, transparent 0 10%, rgba(184,134,11,0.04) 10% 90%, transparent 90% 100%);
-  margin-bottom:0.6rem;
+/* 其他輸入未勾選時淡化 */
+#otherText:disabled {
+  background: #f5f5f5;
+  color: #888;
 }
 
-/* 首字放大（drop-cap）——針對可能的敘述文字 */
-p:first-of-type::first-letter{
-  float:left;
-  font-size:3.2rem;
-  line-height:0.75;
-  margin-right:0.28rem;
-  color:var(--accent-deep);
-  font-weight:700;
-  padding-top:0.1rem;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-  font-family: "Cormorant Garamond", serif;
-}
-
-/* 響應式微調 */
-@media (max-width:600px){
-  body{padding:1rem;}
-  input[type="text"]{width:100%;display:block}
-  input[type="submit"]{width:100%;}
-  h2::before{left:0.4rem}
-}
-
-/* 如果你想引用 Google Fonts（建議）
-   在 <head> 加入：
-   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
-*/
