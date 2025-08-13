@@ -1,72 +1,3 @@
-body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif;
-  line-height: 1.6;
-  padding: 16px;
-}
-
-label { margin-right: 8px; }
-.group label { margin-right: 12px; }
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 8px;
-}
-
-th, td {
-  padding: 8px 10px;
-  border: 1px solid #ddd;
-}
-
-tbody tr:nth-child(even) {
-  background: #fafafa;
-}
-
-/* 新增列的過關動畫 */
-@keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.96); }
-  to   { opacity: 1; transform: scale(1); }
-}
-.new-row {
-  animation: fadeInScale 0.5s ease forwards;
-  background-color: #fffae6;
-}
-
-/* 成功提示（小小過關特效） */
-.toast {
-  position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-20px);
-  background: #111;
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 10px;
-  opacity: 0;
-  pointer-events: none;
-  font-size: 14px;
-}
-.toast.show {
-  animation: slideInOut 2.2s ease forwards;
-}
-@keyframes slideInOut {
-  0%   { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-  15%  { opacity: 1; transform: translateX(-50%) translateY(0); }
-  85%  { opacity: 1; transform: translateX(-50%) translateY(0); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-}
-
-/* 其他輸入未勾選時淡化 */
-#otherText:disabled {
-  background: #f5f5f5;
-  color: #888;
-}
-
-
-
-
-
-
 /* Renaissance / 文藝復興風格 CSS
    - 可放在 ./style.css
    - 建議連同 serif 字體（如 Cormorant Garamond 或 Cardo）一起使用以達最好效果
@@ -269,4 +200,49 @@ p:first-of-type::first-letter{
   input[type="submit"]{width:100%;}
   h2::before{left:0.4rem}
 }
+
+
+
+
+
+.form-input-email {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 250px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* 聚焦時變綠色並有陰影 */
+.form-input-email:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
+}
+
+/* 當 email 格式錯誤時顯示紅色邊框 */
+.form-input-email:invalid {
+    border-color: #e74c3c;
+    box-shadow: 0 0 6px rgba(231, 76, 60, 0.5);
+}
+
+/* 當 email 格式正確時顯示藍色邊框 */
+.form-input-email:valid {
+    border-color: #3498db;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

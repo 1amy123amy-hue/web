@@ -1,3 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>代購活動報名表與市場調查表單網站</title>
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>代購活動報名表與市場調查表單網站</title>
+<style>
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+.new-row {
+    animation: fadeInScale 0.5s ease forwards;
+    background-color: #fffae6;
+}
+</style>
+</head>
+<body>
+<h2>代購活動報名表與市場調查表單網站</h2>
+<form id="signupForm">
+    姓名：<input type="text" id="inputName"><br>
+    性別：<input type="text" id="inputGender"><br>
+    年齡：<input type="number" id="inputAge"><br>
+    買家 E-mail：<input type="email" id="inputBuyerEmail"><br>
+    賣家 E-mail：<input type="email" id="inputSellerEmail"><br>
+    代購產品商品的項目名稱：<br>
+    <input type="checkbox" name="interest" value="鯊魚夾">鯊魚夾
+    <input type="checkbox" name="interest" value="手鍊">手鍊
+    <input type="checkbox" name="interest" value="數位文創產品">數位文創產品
+    <input type="checkbox" name="interest" value="其他">其他：
+    <input type="text" id="inputOther"><br><br>
+    <input type="submit" value="送出">
+</form>
+
+<h2>報名與市場調查清單</h2>
+<table border="1" id="resultTable">
+<tr>
+    <th>姓名</th>
+    <th>性別</th>
+    <th>年齡</th>
+    <th>買家 E-mail</th>
+    <th>賣家 E-mail</th>
+    <th>代購產品商品的項目名稱</th>
+</tr>
+</table>
+
+<br>
+<button id="downloadCsvBtn">下載 CSV</button>
+
+<script>
 document.getElementById("signupForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -36,13 +91,12 @@ document.getElementById("downloadCsvBtn").addEventListener("click", function() {
     for (let row of table.rows) {
         let cols = [];
         for (let cell of row.cells) {
-            let text = cell.innerText.replace(/"/g, '""'); // 避免引號衝突
+            let text = cell.innerText.replace(/"/g, '""');
             cols.push(`"${text}"`);
         }
         csv.push(cols.join(","));
     }
-    const csvContent = "\uFEFF" + csv.join("\n"); // 加 BOM 避免 Excel 中文亂碼
-
+    const csvContent = csv.join("\n");
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
 
@@ -54,3 +108,6 @@ document.getElementById("downloadCsvBtn").addEventListener("click", function() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 });
+</script>
+</body>
+</html>

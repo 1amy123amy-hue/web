@@ -1,6 +1,7 @@
 document.getElementById("signupForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
+    // 取得表單資料
     const name = document.getElementById("inputName").value.trim();
     const gender = document.getElementById("inputGender").value.trim();
     const age = document.getElementById("inputAge").value.trim();
@@ -15,6 +16,16 @@ document.getElementById("signupForm").addEventListener("submit", function(e) {
         interests[interests.indexOf("其他")] = "其他：" + otherValue;
     }
 
+    // 新增提交時間
+    const now = new Date();
+    const submitTime = now.getFullYear() + "-" +
+        String(now.getMonth() + 1).padStart(2, '0') + "-" +
+        String(now.getDate()).padStart(2, '0') + " " +
+        String(now.getHours()).padStart(2, '0') + ":" +
+        String(now.getMinutes()).padStart(2, '0') + ":" +
+        String(now.getSeconds()).padStart(2, '0');
+
+    // 將資料新增到表格
     const table = document.getElementById("resultTable");
     const row = table.insertRow();
     row.classList.add("new-row");
@@ -25,7 +36,9 @@ document.getElementById("signupForm").addEventListener("submit", function(e) {
     row.insertCell(3).textContent = buyerEmail;
     row.insertCell(4).textContent = sellerEmail;
     row.insertCell(5).textContent = interests.join("、");
+    row.insertCell(6).textContent = submitTime;
 
+    // 清空表單
     document.getElementById("signupForm").reset();
 });
 

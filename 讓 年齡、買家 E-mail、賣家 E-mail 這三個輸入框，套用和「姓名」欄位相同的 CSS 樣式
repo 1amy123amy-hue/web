@@ -1,0 +1,30 @@
+HTML
+html
+複製
+編輯
+姓名：<input type="text" id="inputName" class="form-input"><br>
+性別：<input type="text" id="inputGender" class="form-input"><br>
+年齡：<input type="number" id="inputAge" class="form-input"><br>
+買家 E-mail：<input type="email" id="inputBuyerEmail" class="form-input"><br>
+賣家 E-mail：<input type="email" id="inputSellerEmail" class="form-input"><br>
+
+
+---------------------------------
+
+CSS
+css
+複製
+編輯
+.form-input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76,175,80,0.5);
